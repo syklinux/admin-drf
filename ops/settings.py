@@ -103,8 +103,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': "ops",
         'USER': 'root',
-        'PASSWORD': "Syk_77283720",
-        'HOST': "120.78.171.189",
+        'PASSWORD': "123456",
+        'HOST': "127.0.0.1",
         'PORT': "3306",
         # 'OPTIONS': {
         #     'init_command': "SET storage_engine=INNODB;SET sql_mode='STRICT_TRANS_TABLES'"
