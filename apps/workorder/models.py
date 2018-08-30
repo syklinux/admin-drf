@@ -37,4 +37,6 @@ class WorkOrder(models.Model):
         verbose_name = '工单'
         verbose_name_plural = verbose_name
         ordering = ['-complete_time']
-
+	permissions = (
+            ("view_workorder", "cat view workorder"),
+        )
