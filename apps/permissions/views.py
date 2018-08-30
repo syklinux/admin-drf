@@ -6,6 +6,7 @@ from rest_framework.generics import get_object_or_404
 from .serializers import PermissionSerializer
 from .common import get_permission_obj
 from .filters import PermissionFilter
+from rest_framework import permissions
 
 class PermissionsViewset(viewsets.ReadOnlyModelViewSet):
     """
@@ -15,6 +16,7 @@ class PermissionsViewset(viewsets.ReadOnlyModelViewSet):
     返回permission列表
 
     """
+    permission_classes = (permissions.IsAuthenticated, permissions.DjangoObjectPermissions)
     queryset = Permission.objects.all()
     serializer_class = PermissionSerializer
     filter_class = PermissionFilter
@@ -41,7 +43,7 @@ class GroupPermissionsViewset(viewsets.ReadOnlyModelViewSet,
     destroy:
     删除指定组下的权限，参数pid: permission id
     """
-
+    permission_classes = (permissions.IsAuthenticated, permissions.DjangoObjectPermissions)
     queryset = Permission.objects.all()
     serializer_class = PermissionSerializer
     filter_class = PermissionFilter

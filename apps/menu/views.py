@@ -1,7 +1,7 @@
 from rest_framework import viewsets, mixins, response, status
 from rest_framework.generics import get_object_or_404
 from django.contrib.auth.models import Group
-
+from rest_framework import permissions
 
 from .serializers import MenuSerializer
 from .models import Menu
@@ -30,6 +30,7 @@ class MenuViewset(viewsets.ModelViewSet):
     partial_update:
     更新部分字段
     """
+    permission_classes = (permissions.IsAuthenticated, permissions.DjangoObjectPermissions)
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
 
@@ -50,6 +51,7 @@ class GroupMenuViewset(mixins.RetrieveModelMixin,
     destroy:
     删除指定组下的菜单，参数mid: menu id
     """
+    permission_classes = (permissions.IsAuthenticated, permissions.DjangoObjectPermissions)
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
 
@@ -106,3 +108,4 @@ class GroupMenuViewset(mixins.RetrieveModelMixin,
         menu_objects = Menu.objects.filter(pk__in=request.data.get("mid"))
         groupobj.menu_set = menu_objects
         return response.Response(ret, status=status.HTTP_200_OK)
+

@@ -4,7 +4,7 @@ from .models import Product
 from .serializers import ProductSerializer
 from .filters import ProductFilter
 from servers.models import Server
-
+from rest_framework import permissions
 
 
 class ProductViewset(viewsets.ModelViewSet):
@@ -27,6 +27,7 @@ class ProductViewset(viewsets.ModelViewSet):
     partial_update:
     更新部分字段
     """
+    permission_classes = (permissions.IsAuthenticated, permissions.DjangoObjectPermissions)
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     extra_perms_map = {
@@ -62,6 +63,7 @@ class ProductManageViewSet(mixins.ListModelMixin,
     list:
     业务线管理
     """
+    permission_classes = (permissions.IsAuthenticated, permissions.DjangoObjectPermissions)
     queryset = Product.objects.all()
 
     def list(self, request, *args, **kwargs):

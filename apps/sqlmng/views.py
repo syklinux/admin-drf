@@ -12,6 +12,7 @@ from .mixins import PromptMxins, ActionMxins
 from utils.permissions import AuthOrReadOnly
 from utils import inception
 import re
+from rest_framework import permissions
 
 class InceptionMainView(PromptMxins, ActionMxins, BaseView):
     serializer_class = InceptionSerializer
@@ -140,6 +141,8 @@ class SelectDataView(ReturnFormatMixin, AppellationMixins, APIView):
 
 
 class DbViewSet(BaseView):
+    permission_classes = (permissions.IsAuthenticated, permissions.DjangoObjectPermissions)
     queryset = Dbconf.objects.all()
     serializer_class = DbSerializer
     search_fields = ['name','host','port','user','password']
+

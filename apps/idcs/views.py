@@ -2,6 +2,7 @@ from rest_framework import  viewsets, response, status
 from cabinet.models import Cabinet
 from .filter import IdcFilter
 from .serializers import IdcSerializer
+from rest_framework import permissions
 from .models import Idc
 
 
@@ -23,6 +24,7 @@ class IdcViewset(viewsets.ModelViewSet):
     update:
     更新idc记录
     """
+    permission_classes = (permissions.IsAuthenticated, permissions.DjangoObjectPermissions)
     queryset = Idc.objects.all()
     serializer_class = IdcSerializer
     filter_class = IdcFilter

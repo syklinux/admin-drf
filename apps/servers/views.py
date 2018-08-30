@@ -5,7 +5,8 @@ from .serializers import ServerSerializer, NetworkDeviceSerializer, IPSerializer
 from .filter import ServerFilter, NetworkDeviceFilter, IpFilter
 
 
-class ServerViewset(viewsets.ReadOnlyModelViewSet, mixins.UpdateModelMixin):
+# class ServerViewset(viewsets.ReadOnlyModelViewSet, mixins.UpdateModelMixin):
+class ServerViewset(viewsets.ModelViewSet):
     """
     list:
     获取服务器列表
@@ -19,6 +20,7 @@ class ServerViewset(viewsets.ReadOnlyModelViewSet, mixins.UpdateModelMixin):
     update:
     修改服务器记录
     """
+    permission_classes = (permissions.IsAuthenticated, permissions.DjangoObjectPermissions)
     queryset = Server.objects.all()
     serializer_class = ServerSerializer
     #extra_perms_map = {
@@ -42,6 +44,7 @@ class NetwokDeviceViewset(viewsets.ReadOnlyModelViewSet):
     获取指定网卡记录
 
     """
+    permission_classes = (permissions.IsAuthenticated, permissions.DjangoObjectPermissions)
     queryset = NetworkDevice.objects.all()
     serializer_class = NetworkDeviceSerializer
     filter_class = NetworkDeviceFilter

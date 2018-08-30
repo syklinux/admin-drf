@@ -10,7 +10,7 @@ from users.common import get_user_obj
 
 from .serializers import Groupserializer,UserGroupsSerializer
 from .filters import GroupFilter
-
+from rest_framework import permissions
 
 User = get_user_model()
 
@@ -23,6 +23,7 @@ class GroupsViewset(viewsets.ModelViewSet):
     destroy:
     删除角色
     """
+    permission_classes = (permissions.IsAuthenticated, permissions.DjangoObjectPermissions)
     queryset = Group.objects.all()
     serializer_class = Groupserializer
     filter_class = GroupFilter
@@ -45,6 +46,7 @@ class UserGroupsViewset(mixins.RetrieveModelMixin,
     update:
     修改当前用户的角色
     """
+    permission_classes = (permissions.IsAuthenticated, permissions.DjangoObjectPermissions)
     queryset = User.objects.all()
     serializer_class = Groupserializer
 
@@ -87,6 +89,7 @@ class GroupMembersViewset(mixins.RetrieveModelMixin,
     destroy:
     从指定组里删除成员
     """
+    permission_classes = (permissions.IsAuthenticated, permissions.DjangoObjectPermissions)
     queryset = Group.objects.all()
     serializer_class = UserSerializer
 
@@ -127,5 +130,6 @@ class GroupMembersViewset(mixins.RetrieveModelMixin,
         else:
             group_obj.user_set.remove(userobj)
         return Response(ret, status=status.HTTP_200_OK)
+
 
 

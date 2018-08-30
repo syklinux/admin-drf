@@ -19,6 +19,7 @@ class UserRegViewset(mixins.CreateModelMixin,
     update:
     修改密码
     """
+    permission_classes = (permissions.IsAuthenticated, permissions.DjangoObjectPermissions)
     queryset = User.objects.all()
     serializer_class = UserRegSerializer
 
@@ -51,6 +52,7 @@ class UsersViewset(viewsets.ModelViewSet):
     delete:
     删除用户
     """
+    permission_classes = (permissions.IsAuthenticated, permissions.DjangoObjectPermissions)
     queryset = User.objects.all()
     serializer_class = UserSerializer
     filter_class = UserFilter
@@ -64,3 +66,4 @@ class UsersViewset(viewsets.ModelViewSet):
         queryset = queryset.order_by("id")
         queryset = queryset.exclude(is_superuser=True)
         return queryset
+

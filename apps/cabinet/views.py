@@ -2,6 +2,7 @@ from rest_framework import  viewsets
 from .models import Cabinet
 from .serializers import CabinetSerializer
 from .filter import CabinetFilter
+from rest_framework import permissions
 
 class CabinetViewset(viewsets.ModelViewSet):
     """
@@ -20,7 +21,9 @@ class CabinetViewset(viewsets.ModelViewSet):
     update:
     更新机柜记录
     """
+    permission_classes = (permissions.IsAuthenticated, permissions.DjangoObjectPermissions)
     queryset = Cabinet.objects.all()
     serializer_class = CabinetSerializer
     filter_class = CabinetFilter
     filter_fields = ("name", "idc")
+

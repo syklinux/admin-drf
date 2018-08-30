@@ -2,6 +2,7 @@ from rest_framework import viewsets, response, status
 from .models import Manufacturer, ProductModel
 from .serializers import ManufacturerSerializer, ProductModelSerializer
 from .filter import ManufacturerFilter, ProductModelFilter
+from rest_framework import permissions
 
 
 
@@ -26,6 +27,7 @@ class ManufacturerViewset(viewsets.ModelViewSet):
     更新部分字段
         
     """
+    permission_classes = (permissions.IsAuthenticated, permissions.DjangoObjectPermissions)
     queryset = Manufacturer.objects.all()
     serializer_class = ManufacturerSerializer
     filter_class = ManufacturerFilter
@@ -64,6 +66,7 @@ class ProductModelViewset(viewsets.ModelViewSet):
     partial_update:
     更新部分字段
     """
+    permission_classes = (permissions.IsAuthenticated, permissions.DjangoObjectPermissions)
     queryset = ProductModel.objects.all()
     serializer_class = ProductModelSerializer
     filter_class = ProductModelFilter
