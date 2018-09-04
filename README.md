@@ -150,7 +150,7 @@ DATABASES = {
 
 ##### 同步表结果
 
-在操作之前需要在autoAdmin目录下创建一个logs的目录用于存放日志
+在操作之前需要在目录下创建一个logs的目录用于存放日志
 
 ```
 mkdir logs
@@ -309,7 +309,8 @@ server-id =1
 
 
 ## zabbix
-zabbix是直接关联到数据库操作数据库的，该版本只适用于zabbix3.4。
+zabbix是直接关联到数据库操作数据库的，该版本只适用于zabbix3.4。不需要migrate zabbix这个app。
+
 
 ## 服务器数据格式化
 ```json
