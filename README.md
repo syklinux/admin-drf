@@ -2,10 +2,10 @@
 ## 开源运维平台
 
 drf:
-![](http://api.coderops.net/media/image/active/20180830drf.png)
+![](http://www.coderops.net/media/image/active/20180830drf.png)
 
 doc:
-![](http://api.coderops.net/media/image/active/20180830doc.png)
+![](http://www.coderops.net/media/image/active/20180830doc.png)
 
 
 此版本为开发版，用于研究与学习！
